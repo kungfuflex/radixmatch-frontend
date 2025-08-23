@@ -3,11 +3,9 @@ import { describe, it, expect } from 'vitest';
 import { Footer } from './footer';
 
 describe('Footer', () => {
-  it('should render all footer links', () => {
+  it('should render buy and sell buttons', () => {
     render(<Footer />);
-    expect(screen.getByRole('link', { name: /about/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /docs/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /github/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /twitter/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /buy/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /sell/i })).toBeInTheDocument();
   });
 });

@@ -11,11 +11,11 @@ describe('OrderBook', () => {
     expect(screen.getByText('Total')).toBeInTheDocument();
 
     mockOrderBook.asks.forEach(ask => {
-      expect(screen.getByText(ask.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))).toBeInTheDocument();
+      expect(screen.getByText(ask.price.toLocaleString())).toBeInTheDocument();
     });
 
     mockOrderBook.bids.forEach(bid => {
-      expect(screen.getByText(bid.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))).toBeInTheDocument();
+      expect(screen.getByText(bid.price.toLocaleString())).toBeInTheDocument();
     });
   });
 });

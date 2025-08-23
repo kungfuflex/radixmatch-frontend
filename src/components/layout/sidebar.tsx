@@ -39,34 +39,34 @@ export function Sidebar() {
           </h1>
         </Link>
         <div className="flex flex-col items-center gap-2">
-          <Link href="/">
+          <Link href="/" aria-label="explore">
             <button className="rounded-lg flex items-center justify-center transition-colors group cursor-pointer w-fit h-fit disabled:opacity-50 text-secondary hover:text-primary hover:bg-layer-button p-2">
               <IconExplore />
             </button>
           </Link>
-          <Link href="/trade/spot/0x776401b9bc8aae31a685731b7147d4445fd9fb19/0x5ca9f32d4ce7cc0f782213c446c2ae14b754a623">
+          <Link href="/trade/spot/0x776401b9bc8aae31a685731b7147d4445fd9fb19/0x5ca9f32d4ce7cc0f782213c446c2ae14b754a623" aria-label="trade">
             <button className="rounded-lg flex items-center justify-center transition-colors group cursor-pointer w-fit h-fit disabled:opacity-50 text-orange bg-layer-orange p-2">
               <IconTrade />
             </button>
           </Link>
-          <Link href="/dash">
+          <Link href="/dash" aria-label="dash">
             <button className="rounded-lg flex items-center justify-center transition-colors group cursor-pointer w-fit h-fit disabled:opacity-50 text-secondary hover:text-primary hover:bg-layer-button p-2">
               <IconDash />
             </button>
           </Link>
-          <Link href="/swap">
+          <Link href="/swap" aria-label="swap">
             <button className="rounded-lg flex items-center justify-center transition-colors group cursor-pointer w-fit h-fit disabled:opacity-50 text-secondary hover:text-primary hover:bg-layer-button p-2">
               <IconSwap />
             </button>
           </Link>
-          <Link href="/earn">
+          <Link href="/earn" aria-label="earn">
             <button className="rounded-lg flex items-center justify-center transition-colors group cursor-pointer w-fit h-fit disabled:opacity-50 text-secondary hover:text-primary hover:bg-layer-button p-2">
               <IconEarn />
             </button>
           </Link>
         </div>
         <div className="flex flex-col items-center gap-2">
-          <Link href="/portfolio">
+          <Link href="/portfolio" aria-label="portfolio">
             <button className="rounded-lg flex items-center justify-center transition-colors group cursor-pointer w-fit h-fit disabled:opacity-50 text-secondary hover:text-primary hover:bg-layer-button p-2">
               <IconPortfolio />
             </button>
