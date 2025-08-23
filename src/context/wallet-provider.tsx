@@ -7,8 +7,14 @@ type WalletContextType = ReturnType<typeof useWallet>;
 
 const WalletContext = createContext<WalletContextType | undefined>(undefined);
 
-export function WalletProvider({ children }: { children: ReactNode }) {
-  const wallet = useWallet();
+export function WalletProvider({
+  children,
+  initialState,
+}: {
+  children: ReactNode;
+  initialState?: Partial<WalletContextType>;
+}) {
+  const wallet = useWallet(initialState);
   return (
     <WalletContext.Provider value={wallet}>{children}</WalletContext.Provider>
   );

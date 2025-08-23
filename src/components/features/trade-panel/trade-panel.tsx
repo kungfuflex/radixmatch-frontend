@@ -4,14 +4,24 @@ import { mockBalances } from "@/data/mock";
 import { useWalletContext } from "@/context/wallet-provider";
 import { useState } from "react";
 
+type TradeType = "buy" | "sell";
+type OrderType = "market" | "limit";
+
 export function TradePanel() {
   const { isConnected } = useWalletContext();
   const [orderStatus, setOrderStatus] = useState<string | null>(null);
+  const [tradeType, setTradeType] = useState<TradeType>("buy");
+  const [orderType, setOrderType] = useState<OrderType>("market");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handlePlaceOrder = () => {
     if (isConnected) {
-      setOrderStatus("Order placed successfully!");
-      setTimeout(() => setOrderStatus(null), 3000);
+      setIsLoading(true);
+      setTimeout(() => {
+        setOrderStatus("Order placed successfully!");
+        setIsLoading(false);
+        setTimeout(() => setOrderStatus(null), 3000);
+      }, 1000);
     } else {
       setOrderStatus("Please connect your wallet to place an order.");
       setTimeout(() => setOrderStatus(null), 3000);
@@ -37,11 +47,12 @@ export function TradePanel() {
           <button
             type="button"
             role="tab"
-            aria-selected="true"
-            data-state="active"
+            aria-selected={tradeType === "buy"}
+            data-state={tradeType === "buy" ? "active" : "inactive"}
             className="cursor-pointer text-secondary hover:text-primary hover:shadow-[inset_0_-1px_0_0] data-[state=active]:shadow-[inset_0_-1px_0_0] data-[state=active]:shadow-orange data-[state=active]:text-orange flex-1"
             tabIndex={-1}
             data-orientation="horizontal"
+            onClick={() => setTradeType("buy")}
           >
             <p className="font-sans text-[12px] leading-[16px] font-normal text-inherit drop-cap p-3">
               Buy
@@ -50,11 +61,12 @@ export function TradePanel() {
           <button
             type="button"
             role="tab"
-            aria-selected="false"
-            data-state="inactive"
+            aria-selected={tradeType === "sell"}
+            data-state={tradeType === "sell" ? "active" : "inactive"}
             className="cursor-pointer text-secondary hover:text-primary hover:shadow-[inset_0_-1px_0_0] data-[state=active]:shadow-[inset_0_-1px_0_0] data-[state=active]:shadow-orange data-[state=active]:text-orange flex-1"
             tabIndex={-1}
             data-orientation="horizontal"
+            onClick={() => setTradeType("sell")}
           >
             <p className="font-sans text-[12px] leading-[16px] font-normal text-inherit drop-cap p-3">
               Sell
@@ -80,12 +92,13 @@ export function TradePanel() {
           >
             <button
               type="button"
-              data-state="on"
+              data-state={orderType === "market" ? "on" : "off"}
               role="radio"
-              aria-checked="true"
+              aria-checked={orderType === "market"}
               className="text-secondary hover:text-primary hover:bg-layer-card flex flex-1 items-center justify-center rounded-md focus:outline-none data-[state=on]:bg-layer-orange data-[state=on]:text-orange hover:text-primary hover:bg-layer-card cursor-pointer px-3 py-2"
               aria-label="Market"
               tabIndex={-1}
+              onClick={() => setOrderType("market")}
             >
               <p className="font-family-mono text-[12px] leading-[16px] font-medium text-inherit drop-cap text-nowrap">
                 Market
@@ -93,12 +106,13 @@ export function TradePanel() {
             </button>
             <button
               type="button"
-              data-state="off"
+              data-state={orderType === "limit" ? "on" : "off"}
               role="radio"
-              aria-checked="false"
+              aria-checked={orderType === "limit"}
               className="text-secondary hover:text-primary hover:bg-layer-card flex flex-1 items-center justify-center rounded-md focus:outline-none data-[state=on]:bg-layer-orange data-[state=on]:text-orange hover:text-primary hover:bg-layer-card cursor-pointer px-3 py-2"
               aria-label="Limit"
               tabIndex={-1}
+              onClick={() => setOrderType("limit")}
             >
               <p className="font-family-mono text-[12px] leading-[16px] font-medium text-inherit drop-cap text-nowrap">
                 Limit
@@ -154,7 +168,11 @@ export function TradePanel() {
               >
                 <div className="flex items-center justify-center gap-2">
                   <p className="font-family-mono text-[14px] leading-[16px] font-normal text-inherit drop-cap">
-                    {isConnected ? "Place Order" : "Connect Wallet"}
+                    {isLoading
+                      ? "Placing Order..."
+                      : isConnected
+                      ? "Place Order"
+                      : "Connect Wallet"}
                   </p>
                 </div>
               </button>

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-export function useWallet() {
-  const [isConnected, setIsConnected] = useState(false);
-  const [address, setAddress] = useState<string | null>(null);
+export function useWallet(initialState: { isConnected?: boolean; address?: string | null } = {}) {
+  const [isConnected, setIsConnected] = useState(initialState.isConnected || false);
+  const [address, setAddress] = useState<string | null>(initialState.address || null);
 
   const connect = () => {
     if (process.env.NEXT_PUBLIC_MOCK_MODE) {
