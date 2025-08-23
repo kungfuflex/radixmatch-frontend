@@ -7,10 +7,10 @@ export function IconDash() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_3258_6326)">
+      <g clipPath="url(#clip0_3258_6326)">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M18.4559 3.07039C17.9578 2.97923 17.4325 2.93164 16.8828 2.93164C11.9122 2.93164 6.83992 6.82378 5.55344 11.625C4.26696 16.4262 7.25351 20.3183 12.2241 20.3183C16.645 20.3183 21.1464 17.2394 22.993 13.1804L21.1176 12.8347C19.6813 15.9917 16.1802 18.3865 12.7417 18.3865C8.87571 18.3865 6.55285 15.3592 7.55344 11.625C8.55403 7.89071 12.4992 4.86349 16.3652 4.86349C16.7927 4.86349 17.2013 4.90051 17.5887 4.97141L18.4559 3.07039Z"
           fill="currentColor"
         ></path>
@@ -21,16 +21,16 @@ export function IconDash() {
         <path
           d="M21.874 4.86377H26.1907L24.9937 9.33118"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="square"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="square"
+          strokeLinejoin="round"
         ></path>
         <path
           d="M21.9653 21.2843L18.7412 17.0825"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="square"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="square"
+          strokeLinejoin="round"
         ></path>
       </g>
       <defs>

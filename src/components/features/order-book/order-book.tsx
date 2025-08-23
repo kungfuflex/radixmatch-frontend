@@ -1,16 +1,8 @@
-import {
-  IconDash,
-  IconEarn,
-  IconExplore,
-  IconMenu,
-  IconPortfolio,
-  IconSearch,
-  IconSwap,
-  IconTrade,
-  IconWallet,
-} from "@/components/icons";
+import { mockOrderBook } from "@/data/mock";
 
 export function OrderBook() {
+  const { bids, asks, spread } = mockOrderBook;
+
   return (
     <div
       dir="ltr"
@@ -76,21 +68,63 @@ export function OrderBook() {
           </div>
           <div className="flex flex-1 flex-col gap-0.5">
             <div className="flex flex-col-reverse gap-0.5">
-              {/* Order book sell-side rows */}
+              {asks.map((ask, i) => (
+                <div
+                  key={i}
+                  className="hover:bg-layer-card relative cursor-pointer px-3 py-1"
+                >
+                  <div
+                    className="absolute top-0 left-0 h-full opacity-20 transition-all duration-300 rounded-none bg-red"
+                    style={{ width: `${(ask.total / 55.29) * 100}%` }}
+                  ></div>
+                  <div className="z-10 flex gap-4">
+                    <p className="font-family-mono text-[12px] leading-[16px] font-normal text-red drop-cap flex-1 text-start">
+                      {ask.price.toLocaleString()}
+                    </p>
+                    <p className="font-family-mono text-[12px] leading-[16px] font-normal text-primary drop-cap flex-1 text-center">
+                      {ask.size}
+                    </p>
+                    <p className="font-family-mono text-[12px] leading-[16px] font-normal text-primary drop-cap flex-1 text-end">
+                      {ask.total}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
             <div className="bg-layer-card flex items-center px-3 py-1">
               <p className="font-family-mono text-[12px] leading-[16px] font-normal text-secondary drop-cap flex-1 text-start">
                 Spread
               </p>
               <p className="font-family-mono text-[12px] leading-[16px] font-normal text-secondary drop-cap flex-1 text-center">
-                255322.27
+                {spread.value.toLocaleString()}
               </p>
               <p className="font-family-mono text-[12px] leading-[16px] font-normal text-secondary drop-cap flex-1 text-end">
-                1.80%
+                {spread.percentage}%
               </p>
             </div>
             <div className="flex flex-col gap-0.5">
-              {/* Order book buy-side rows */}
+              {bids.map((bid, i) => (
+                <div
+                  key={i}
+                  className="hover:bg-layer-card relative cursor-pointer px-3 py-1"
+                >
+                  <div
+                    className="absolute top-0 left-0 h-full opacity-20 transition-all duration-300 rounded-none bg-green"
+                    style={{ width: `${(bid.total / 0.03) * 100}%` }}
+                  ></div>
+                  <div className="z-10 flex gap-4">
+                    <p className="font-family-mono text-[12px] leading-[16px] font-normal text-green drop-cap flex-1 text-start">
+                      {bid.price.toLocaleString()}
+                    </p>
+                    <p className="font-family-mono text-[12px] leading-[16px] font-normal text-primary drop-cap flex-1 text-center">
+                      {bid.size}
+                    </p>
+                    <p className="font-family-mono text-[12px] leading-[16px] font-normal text-primary drop-cap flex-1 text-end">
+                      {bid.total}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

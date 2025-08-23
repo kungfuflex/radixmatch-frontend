@@ -1,10 +1,22 @@
 import Link from "next/link";
+import {
+  IconDash,
+  IconEarn,
+  IconExplore,
+  IconPortfolio,
+  IconSwap,
+  IconTrade,
+  IconWallet,
+} from "../icons";
 
 export function Sidebar() {
   return (
     <aside className="bg-layer-0 fixed top-0 left-0 z-30 hidden h-screen border-r w-none desktop:flex desktop:w-[var(--sidebar-width)]">
       <div className="bg-layer-card flex h-full flex-col justify-between p-3 py-4">
-        <Link className="relative flex h-5 w-14 items-center justify-center" href="/">
+        <Link
+          className="relative flex h-5 w-14 items-center justify-center"
+          href="/"
+        >
           <img
             alt="logo"
             decoding="async"
@@ -27,10 +39,41 @@ export function Sidebar() {
           </h1>
         </Link>
         <div className="flex flex-col items-center gap-2">
-          {/* Navigation Icons */}
+          <Link href="/">
+            <button className="rounded-lg flex items-center justify-center transition-colors group cursor-pointer w-fit h-fit disabled:opacity-50 text-secondary hover:text-primary hover:bg-layer-button p-2">
+              <IconExplore />
+            </button>
+          </Link>
+          <Link href="/trade/spot/0x776401b9bc8aae31a685731b7147d4445fd9fb19/0x5ca9f32d4ce7cc0f782213c446c2ae14b754a623">
+            <button className="rounded-lg flex items-center justify-center transition-colors group cursor-pointer w-fit h-fit disabled:opacity-50 text-orange bg-layer-orange p-2">
+              <IconTrade />
+            </button>
+          </Link>
+          <Link href="/dash">
+            <button className="rounded-lg flex items-center justify-center transition-colors group cursor-pointer w-fit h-fit disabled:opacity-50 text-secondary hover:text-primary hover:bg-layer-button p-2">
+              <IconDash />
+            </button>
+          </Link>
+          <Link href="/swap">
+            <button className="rounded-lg flex items-center justify-center transition-colors group cursor-pointer w-fit h-fit disabled:opacity-50 text-secondary hover:text-primary hover:bg-layer-button p-2">
+              <IconSwap />
+            </button>
+          </Link>
+          <Link href="/earn">
+            <button className="rounded-lg flex items-center justify-center transition-colors group cursor-pointer w-fit h-fit disabled:opacity-50 text-secondary hover:text-primary hover:bg-layer-button p-2">
+              <IconEarn />
+            </button>
+          </Link>
         </div>
         <div className="flex flex-col items-center gap-2">
-          {/* Bottom Icons */}
+          <Link href="/portfolio">
+            <button className="rounded-lg flex items-center justify-center transition-colors group cursor-pointer w-fit h-fit disabled:opacity-50 text-secondary hover:text-primary hover:bg-layer-button p-2">
+              <IconPortfolio />
+            </button>
+          </Link>
+          <button className="rounded-lg flex items-center justify-center transition-colors group cursor-pointer w-fit h-fit disabled:opacity-50 text-primary bg-layer-button p-2">
+            <IconWallet />
+          </button>
         </div>
       </div>
     </aside>
