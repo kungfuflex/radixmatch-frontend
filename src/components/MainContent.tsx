@@ -2,41 +2,45 @@ import React from 'react';
 import Chart from './Chart';
 import OrderBook from './OrderBook';
 import Swap from './Swap';
-import CopyIcon from './icons/CopyIcon';
+import { IconCopy } from './icons';
 
 const MainContent = () => {
   return (
-    <main className="flex-1 p-4 bg-black text-white">
-      <div className="grid grid-cols-4 gap-4 border-b border-gray-700 pb-4 mb-4">
+    <main className="flex-1 p-2 bg-black text-gray-400 flex flex-col overflow-hidden">
+      <div className="grid grid-cols-4 gap-2 border-b border-gray-700 pb-2 mb-2">
         <div>
-          <p className="text-sm text-gray-400">Price (24hr Change)</p>
-          <p className="text-lg">$3,000.00 <span className="text-green-500">(+5.2%)</span></p>
+          <p className="text-xs text-gray-500">Price (24hr Change)</p>
+          <p className="text-sm text-gray-300">$3,000.00 <span className="text-green-500">(+5.2%)</span></p>
         </div>
         <div>
-          <p className="text-sm text-gray-400">24hr Volume</p>
-          <p className="text-lg">$1,234,567.89</p>
+          <p className="text-xs text-gray-500">24hr Volume</p>
+          <p className="text-sm text-gray-300">$1,234,567.89</p>
         </div>
         <div>
-          <p className="text-sm text-gray-400">Market Cap</p>
-          <p className="text-lg">$1,234,567,890.12</p>
+          <p className="text-xs text-gray-500">Market Cap</p>
+          <p className="text-sm text-gray-300">$1,234,567,890.12</p>
         </div>
         <div>
-          <p className="text-sm text-gray-400">Contract</p>
-          <div className="flex items-center gap-2">
-            <p className="text-lg">0x1234...5678</p>
+          <p className="text-xs text-gray-500">Contract</p>
+          <div className="flex items-center gap-1">
+            <p className="text-sm text-gray-300">0x1234...5678</p>
             <button>
-              <CopyIcon />
+              <IconCopy />
             </button>
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-4 h-[calc(100vh-220px)]">
-        <div className="col-span-2">
+      <div className="grid lg:grid-cols-5 gap-2 flex-1 overflow-hidden">
+        <div className="lg:col-span-3">
           <Chart />
         </div>
-        <div className="grid grid-rows-2 gap-4">
-          <OrderBook />
-          <Swap />
+        <div className="lg:col-span-2 grid md:grid-cols-2 gap-2 overflow-hidden">
+          <div className="flex-1 overflow-y-auto">
+            <OrderBook />
+          </div>
+          <div className="flex-1">
+            <Swap />
+          </div>
         </div>
       </div>
     </main>

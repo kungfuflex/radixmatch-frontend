@@ -1,59 +1,66 @@
 "use client";
 import React, { useState } from 'react';
-import RadixIcon from './icons/RadixIcon';
-import ExploreIcon from './icons/ExploreIcon';
-import TradeIcon from './icons/TradeIcon';
-import DashIcon from './icons/DashIcon';
-import SwapIcon from './icons/SwapIcon';
-import EarnIcon from './icons/EarnIcon';
-import PortfolioIcon from './icons/PortfolioIcon';
-import LaunchIcon from './icons/LaunchIcon';
+import RadixLogo from './icons/RadixLogo';
+import {
+  IconDash,
+  IconEarn,
+  IconExplore,
+  IconLaunch,
+  IconPortfolio,
+  IconSwap,
+  IconTrade,
+} from './icons';
 import Modal from './Modal';
 
 const LeftSidebar = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [selected, setSelected] = useState('Trade');
+
+  const navItems = [
+    { name: 'Explore', icon: <IconExplore /> },
+    { name: 'Trade', icon: <IconTrade /> },
+    { name: 'Dash', icon: <IconDash /> },
+    { name: 'Swap', icon: <IconSwap /> },
+    { name: 'Earn', icon: <IconEarn /> },
+  ];
+
+  const bottomNavItems = [
+    { name: 'Portfolio', icon: <IconPortfolio /> },
+    { name: 'Launch', icon: <IconLaunch />, onClick: () => setModalOpen(true) },
+  ];
 
   return (
     <>
       <aside className="w-20 bg-black flex flex-col items-center py-4">
         <div className="mb-8">
-          <RadixIcon />
-          <p className="text-xs text-center mt-1">Alpha</p>
+          <RadixLogo />
+          <p className="text-xs text-center mt-1">RADIX</p>
         </div>
         <nav className="flex flex-col gap-6">
-          <button className="flex flex-col items-center gap-1 text-xs">
-            <ExploreIcon />
-            Explore
-          </button>
-          <button className="flex flex-col items-center gap-1 text-xs">
-            <TradeIcon />
-            Trade
-          </button>
-          <button className="flex flex-col items-center gap-1 text-xs">
-            <DashIcon />
-            Dash
-          </button>
-          <button className="flex flex-col items-center gap-1 text-xs">
-            <SwapIcon />
-            Swap
-          </button>
-          <button className="flex flex-col items-center gap-1 text-xs">
-            <EarnIcon />
-            Earn
-          </button>
+          {navItems.map((item) => (
+            <button
+              key={item.name}
+              title={item.name}
+              className={`flex flex-col items-center gap-1 text-xs ${
+                selected === item.name ? 'text-orange-500' : ''
+              }`}
+              onClick={() => setSelected(item.name)}
+            >
+              {item.icon}
+            </button>
+          ))}
         </nav>
         <div className="mt-auto flex flex-col gap-6">
-          <button className="flex flex-col items-center gap-1 text-xs">
-            <PortfolioIcon />
-            Portfolio
-          </button>
-          <button
-            className="flex flex-col items-center gap-1 text-xs"
-            onClick={() => setModalOpen(true)}
-          >
-            <LaunchIcon />
-            Launch
-          </button>
+          {bottomNavItems.map((item) => (
+            <button
+              key={item.name}
+              title={item.name}
+              className="flex flex-col items-center gap-1 text-xs"
+              onClick={item.onClick}
+            >
+              {item.icon}
+            </button>
+          ))}
         </div>
       </aside>
       <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
