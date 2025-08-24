@@ -43,16 +43,6 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Custom colors from template
-        'layer-0': 'var(--layer-0)',
-        'layer-card': 'var(--layer-card)',
-        'layer-button': 'var(--layer-button)',
-        'layer-orange': 'var(--layer-orange)',
-        'layer-red': 'var(--layer-red)',
-        'layer-green': 'var(--layer-green)',
-        'color-red': 'var(--color-red)',
-        'color-green': 'var(--color-green)',
-        'color-orange': 'var(--color-orange)',
       },
       borderRadius: {
         lg: "var(--radius)",

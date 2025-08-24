@@ -1,5 +1,8 @@
+"use client";
+
 import { mockOrderBook, mockTrades } from "@/data/mock";
 import { useState } from "react";
+import AnimatedCounter from "@/components/ui/animated-counter";
 
 type Tab = "order-book" | "trades";
 
@@ -7,69 +10,44 @@ export function OrderBook() {
   const { bids, asks, spread } = mockOrderBook;
   const [activeTab, setActiveTab] = useState<Tab>("order-book");
 
+  const maxTotalAsks = Math.max(...asks.map((ask) => ask.total));
+  const maxTotalBids = Math.max(...bids.map((bid) => bid.total));
+
   return (
-    <div
-      dir="ltr"
-      data-orientation="horizontal"
-      className="bg-layer-card border rounded-lg"
-    >
-      <div
-        role="tablist"
-        aria-orientation="horizontal"
-        aria-label="Tabs"
-        className="flex w-full justify-between"
-        tabIndex={0}
-        data-orientation="horizontal"
-        style={{ outline: "none" }}
-      >
-        <div className="flex w-full justify-between gap-0">
-          <button
-            type="button"
-            role="tab"
-            aria-selected={activeTab === "order-book"}
-            data-state={activeTab === "order-book" ? "active" : "inactive"}
-            className="cursor-pointer text-secondary hover:text-primary hover:shadow-[inset_0_-1px_0_0] data-[state=active]:shadow-[inset_0_-1px_0_0] data-[state=active]:shadow-orange data-[state=active]:text-orange flex-1"
-            tabIndex={-1}
-            data-orientation="horizontal"
-            onClick={() => setActiveTab("order-book")}
-          >
-            <p className="font-sans text-[12px] leading-[16px] font-normal text-inherit drop-cap p-3">
-              Order Book
-            </p>
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={activeTab === "trades"}
-            data-state={activeTab === "trades" ? "active" : "inactive"}
-            className="cursor-pointer text-secondary hover:text-primary hover:shadow-[inset_0_-1px_0_0] data-[state=active]:shadow-[inset_0_-1px_0_0] data-[state=active]:shadow-orange data-[state=active]:text-orange flex-1"
-            tabIndex={-1}
-            data-orientation="horizontal"
-            onClick={() => setActiveTab("trades")}
-          >
-            <p className="font-sans text-[12px] leading-[16px] font-normal text-inherit drop-cap p-3">
-              Trades
-            </p>
-          </button>
-        </div>
-      </div>
-      {activeTab === "order-book" && (
-        <div
-          data-state="active"
-          data-orientation="horizontal"
-          role="tabpanel"
-          className="h-full border-t"
-          style={{}}
+    <div className="bg-layer-card border rounded-lg flex flex-col h-full">
+      <div className="flex w-full justify-between border-b">
+        <button
+          onClick={() => setActiveTab("order-book")}
+          className={`flex-1 p-3 text-center font-sans text-xs font-normal ${
+            activeTab === "order-book"
+              ? "text-orange shadow-[inset_0_-1px_0_0] shadow-orange"
+              : "text-secondary hover:text-primary"
+          }`}
         >
+          Order Book
+        </button>
+        <button
+          onClick={() => setActiveTab("trades")}
+          className={`flex-1 p-3 text-center font-sans text-xs font-normal ${
+            activeTab === "trades"
+              ? "text-orange shadow-[inset_0_-1px_0_0] shadow-orange"
+              : "text-secondary hover:text-primary"
+          }`}
+        >
+          Trades
+        </button>
+      </div>
+      <div className="flex-1 overflow-y-auto">
+        {activeTab === "order-book" && (
           <div className="flex flex-col">
             <div className="flex items-center px-3 py-2">
-              <p className="font-family-mono text-[12px] leading-[16px] font-normal text-secondary drop-cap flex-1 text-start">
+              <p className="font-mono text-xs font-normal text-secondary flex-1 text-start">
                 Price
               </p>
-              <p className="font-family-mono text-[12px] leading-[16px] font-normal text-secondary drop-cap flex-1 text-center">
+              <p className="font-mono text-xs font-normal text-secondary flex-1 text-center">
                 Size
               </p>
-              <p className="font-family-mono text-[12px] leading-[16px] font-normal text-secondary drop-cap flex-1 text-end">
+              <p className="font-mono text-xs font-normal text-secondary flex-1 text-end">
                 Total
               </p>
             </div>
@@ -82,31 +60,31 @@ export function OrderBook() {
                   >
                     <div
                       className="absolute top-0 left-0 h-full opacity-20 transition-all duration-300 rounded-none bg-red"
-                      style={{ width: `${(ask.total / 55.29) * 100}%` }}
+                      style={{ width: `${(ask.total / maxTotalAsks) * 100}%` }}
                     ></div>
                     <div className="z-10 flex gap-4">
-                      <p className="font-family-mono text-[12px] leading-[16px] font-normal text-red drop-cap flex-1 text-start">
-                        {ask.price.toLocaleString()}
+                      <p className="font-mono text-xs font-normal text-red flex-1 text-start">
+                        <AnimatedCounter value={ask.price} />
                       </p>
-                      <p className="font-family-mono text-[12px] leading-[16px] font-normal text-primary drop-cap flex-1 text-center">
-                        {ask.size}
+                      <p className="font-mono text-xs font-normal text-primary flex-1 text-center">
+                        <AnimatedCounter value={ask.size} />
                       </p>
-                      <p className="font-family-mono text-[12px] leading-[16px] font-normal text-primary drop-cap flex-1 text-end">
-                        {ask.total}
+                      <p className="font-mono text-xs font-normal text-primary flex-1 text-end">
+                        <AnimatedCounter value={ask.total} />
                       </p>
                     </div>
                   </div>
                 ))}
               </div>
               <div className="bg-layer-card flex items-center px-3 py-1">
-                <p className="font-family-mono text-[12px] leading-[16px] font-normal text-secondary drop-cap flex-1 text-start">
+                <p className="font-mono text-xs font-normal text-secondary flex-1 text-start">
                   Spread
                 </p>
-                <p className="font-family-mono text-[12px] leading-[16px] font-normal text-secondary drop-cap flex-1 text-center">
-                  {spread.value.toLocaleString()}
+                <p className="font-mono text-xs font-normal text-secondary flex-1 text-center">
+                  <AnimatedCounter value={spread.value} />
                 </p>
-                <p className="font-family-mono text-[12px] leading-[16px] font-normal text-secondary drop-cap flex-1 text-end">
-                  {spread.percentage}%
+                <p className="font-mono text-xs font-normal text-secondary flex-1 text-end">
+                  <AnimatedCounter value={spread.percentage} />%
                 </p>
               </div>
               <div className="flex flex-col gap-0.5">
@@ -117,17 +95,17 @@ export function OrderBook() {
                   >
                     <div
                       className="absolute top-0 left-0 h-full opacity-20 transition-all duration-300 rounded-none bg-green"
-                      style={{ width: `${(bid.total / 0.03) * 100}%` }}
+                      style={{ width: `${(bid.total / maxTotalBids) * 100}%` }}
                     ></div>
                     <div className="z-10 flex gap-4">
-                      <p className="font-family-mono text-[12px] leading-[16px] font-normal text-green drop-cap flex-1 text-start">
-                        {bid.price.toLocaleString()}
+                      <p className="font-mono text-xs font-normal text-green flex-1 text-start">
+                        <AnimatedCounter value={bid.price} />
                       </p>
-                      <p className="font-family-mono text-[12px] leading-[16px] font-normal text-primary drop-cap flex-1 text-center">
-                        {bid.size}
+                      <p className="font-mono text-xs font-normal text-primary flex-1 text-center">
+                        <AnimatedCounter value={bid.size} />
                       </p>
-                      <p className="font-family-mono text-[12px] leading-[16px] font-normal text-primary drop-cap flex-1 text-end">
-                        {bid.total}
+                      <p className="font-mono text-xs font-normal text-primary flex-1 text-end">
+                        <AnimatedCounter value={bid.total} />
                       </p>
                     </div>
                   </div>
@@ -135,28 +113,21 @@ export function OrderBook() {
               </div>
             </div>
           </div>
-        </div>
-      )}
-      {activeTab === "trades" && (
-        <div
-          data-state="active"
-          data-orientation="horizontal"
-          role="tabpanel"
-          className="h-full border-t"
-        >
-          <div className="flex flex-col">
+        )}
+        {activeTab === "trades" && (
+          <div className="flex flex-col h-full">
             <div className="flex items-center px-3 py-2">
-              <p className="font-family-mono text-[12px] leading-[16px] font-normal text-secondary drop-cap flex-1 text-start">
+              <p className="font-mono text-xs font-normal text-secondary flex-1 text-start">
+                Price
+              </p>
+              <p className="font-mono text-xs font-normal text-secondary flex-1 text-center">
+                Size
+              </p>
+              <p className="font-mono text-xs font-normal text-secondary flex-1 text-end">
                 Time
               </p>
-              <p className="font-family-mono text-[12px] leading-[16px] font-normal text-secondary drop-cap flex-1 text-center">
-                Price (USD)
-              </p>
-              <p className="font-family-mono text-[12px] leading-[16px] font-normal text-secondary drop-cap flex-1 text-end">
-                Amount (BTC)
-              </p>
             </div>
-            <div className="flex flex-1 flex-col gap-0.5">
+            <div className="flex-1 overflow-y-auto">
               {mockTrades.map((trade, i) => (
                 <div
                   key={i}
@@ -164,25 +135,25 @@ export function OrderBook() {
                 >
                   <div className="z-10 flex gap-4">
                     <p
-                      className={`font-family-mono text-[12px] leading-[16px] font-normal drop-cap flex-1 text-start ${
+                      className={`font-mono text-xs font-normal flex-1 text-start ${
                         trade.type === "buy" ? "text-green" : "text-red"
                       }`}
                     >
+                      <AnimatedCounter value={trade.price} />
+                    </p>
+                    <p className="font-mono text-xs font-normal text-primary flex-1 text-center">
+                      <AnimatedCounter value={trade.amount} precision={3} />
+                    </p>
+                    <p className="font-mono text-xs font-normal text-primary flex-1 text-end">
                       {trade.time}
-                    </p>
-                    <p className="font-family-mono text-[12px] leading-[16px] font-normal text-primary drop-cap flex-1 text-center">
-                      {trade.price.toFixed(2)}
-                    </p>
-                    <p className="font-family-mono text-[12px] leading-[16px] font-normal text-primary drop-cap flex-1 text-end">
-                      {trade.amount.toFixed(3)}
                     </p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
