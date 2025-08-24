@@ -72,7 +72,7 @@ const OrderBook = () => {
       {activeTab === 'trades' && (
         <div>
           <div className="grid grid-cols-3 text-sm text-gray-400 py-2 border-b border-gray-700">
-            <span>Price (USD)</span>
+            <span>Price (frUSD)</span>
             <span>Size</span>
             <span>Time</span>
           </div>

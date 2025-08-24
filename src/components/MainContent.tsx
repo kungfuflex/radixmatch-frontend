@@ -9,7 +9,7 @@ const MainContent = () => {
     <main className="flex-1 p-2 bg-black text-gray-400 flex flex-col overflow-hidden">
       <div className="grid grid-cols-4 gap-2 border-b border-gray-700 pb-2 mb-2">
         <div>
-          <p className="text-xs text-gray-500">Price (24hr Change)</p>
+          <p className="text-xs text-gray-500">Price (frUSD)</p>
           <p className="text-sm text-gray-300">$3,000.00 <span className="text-green-500">(+5.2%)</span></p>
         </div>
         <div>

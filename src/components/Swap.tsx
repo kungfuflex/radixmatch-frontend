@@ -8,8 +8,8 @@ const Swap = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isWalletConnected, setWalletConnected] = useState(false);
   const [slippage, setSlippage] = useState(5);
-  const [inputAsset, setInputAsset] = useState('USD');
-  const [outputAsset, setOutputAsset] = useState('ETH');
+  const [inputAsset, setInputAsset] = useState('frUSD');
+  const [outputAsset, setOutputAsset] = useState('frETH');
 
   const handleSwap = () => {
     if (isWalletConnected) {
@@ -41,7 +41,7 @@ const Swap = () => {
             Limit
           </button>
         </div>
-        <div className="text-xs my-2">1 USD = 0.00000008820 ETH</div>
+        <div className="text-xs my-2">1 frUSD = 0.00000008820 frETH</div>
         <div className="flex-1 flex flex-col">
           <div className="mb-2">
             <div className="flex justify-between items-center mb-1">
@@ -94,12 +94,12 @@ const Swap = () => {
           </div>
           <div className="text-xs py-1">
             <div className="grid grid-cols-3">
-              <span>ETH</span>
+              <span>frETH</span>
               <span>0.00</span>
               <button className="text-orange-500">Withdraw</button>
             </div>
             <div className="grid grid-cols-3">
-              <span>USD</span>
+              <span>frUSD</span>
               <span>0.00</span>
               <button className="text-orange-500">Withdraw</button>
             </div>
