@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-export function TradingViewChart() {
+export default function Chart() {
   const container = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

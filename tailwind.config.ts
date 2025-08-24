@@ -10,6 +10,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        'night-black': '#0a0a0a',
+        'night-gray': '#1a1a1a',
+        'night-light-gray': '#2a2a2a',
+        'night-orange': '#ff8c00',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
