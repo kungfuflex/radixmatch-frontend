@@ -23,10 +23,10 @@ const LeftSidebar = () => {
     { name: 'Trade', href: '/trade', icon: <IconTrade /> },
     { name: 'Swap', href: '/swap', icon: <IconSwap /> },
     { name: 'Earn', href: '/earn', icon: <IconEarn /> },
-    { name: 'Portfolio', href: '/portfolio', icon: <IconPortfolio /> },
   ];
 
   const bottomNavItems = [
+    { name: 'Portfolio', href: '/portfolio', icon: <IconPortfolio /> },
     { name: 'Launch', icon: <IconLaunch />, onClick: () => setModalOpen(true) },
   ];
 
@@ -42,25 +42,38 @@ const LeftSidebar = () => {
             <Link
               key={item.name}
               href={item.href}
+              title={item.name}
               className={`flex flex-col items-center gap-1 text-xs ${
                 pathname === item.href ? 'text-orange-500' : ''
               }`}
             >
               {item.icon}
-              <span>{item.name}</span>
             </Link>
           ))}
         </nav>
         <div className="mt-auto flex flex-col gap-6">
           {bottomNavItems.map((item) => (
-            <button
-              key={item.name}
-              title={item.name}
-              className="flex flex-col items-center gap-1 text-xs"
-              onClick={item.onClick}
-            >
-              {item.icon}
-            </button>
+            item.href ? (
+              <Link
+                key={item.name}
+                href={item.href}
+                title={item.name}
+                className={`flex flex-col items-center gap-1 text-xs ${
+                  pathname === item.href ? 'text-orange-500' : ''
+                }`}
+              >
+                {item.icon}
+              </Link>
+            ) : (
+              <button
+                key={item.name}
+                title={item.name}
+                className="flex flex-col items-center gap-1 text-xs"
+                onClick={item.onClick}
+              >
+                {item.icon}
+              </button>
+            )
           ))}
         </div>
       </aside>
