@@ -1,7 +1,7 @@
 import React from 'react';
 import Chart from './Chart';
 import OrderBook from './OrderBook';
-import Swap from './Swap';
+import Trade from './Trade';
 import { IconCopy } from './icons';
 
 const MainContent = () => {
@@ -39,7 +39,7 @@ const MainContent = () => {
             <OrderBook />
           </div>
           <div className="flex-1">
-            <Swap />
+            <Trade />
           </div>
         </div>
       </div>

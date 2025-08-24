@@ -12,9 +12,13 @@ import {
 } from './icons';
 import Modal from './Modal';
 
-const LeftSidebar = () => {
+interface LeftSidebarProps {
+  selected: string;
+  setSelected: (selected: string) => void;
+}
+
+const LeftSidebar: React.FC<LeftSidebarProps> = ({ selected, setSelected }) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [selected, setSelected] = useState('Trade');
 
   const navItems = [
     { name: 'Explore', icon: <IconExplore /> },
@@ -22,10 +26,10 @@ const LeftSidebar = () => {
     { name: 'Dash', icon: <IconDash /> },
     { name: 'Swap', icon: <IconSwap /> },
     { name: 'Earn', icon: <IconEarn /> },
+    { name: 'Portfolio', icon: <IconPortfolio /> },
   ];
 
   const bottomNavItems = [
-    { name: 'Portfolio', icon: <IconPortfolio /> },
     { name: 'Launch', icon: <IconLaunch />, onClick: () => setModalOpen(true) },
   ];
 
