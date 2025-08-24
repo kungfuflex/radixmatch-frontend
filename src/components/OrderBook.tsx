@@ -1,20 +1,29 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+interface Order {
+  price: string;
+  size: string;
+  total: string;
+}
 
 const OrderBook = () => {
   const [activeTab, setActiveTab] = useState('orderBook');
+  const [asks, setAsks] = useState<Order[]>([]);
+  const [bids, setBids] = useState<Order[]>([]);
 
-  const asks = Array.from({ length: 20 }, (_, i) => ({
-    price: (3001.00 + i * 0.5).toFixed(2),
-    size: (Math.random() * 1).toFixed(3),
-    total: (Math.random() * 3000).toFixed(2),
-  }));
-
-  const bids = Array.from({ length: 20 }, (_, i) => ({
-    price: (2999.50 - i * 0.5).toFixed(2),
-    size: (Math.random() * 1).toFixed(3),
-    total: (Math.random() * 3000).toFixed(2),
-  }));
+  useEffect(() => {
+    setAsks(Array.from({ length: 20 }, (_, i) => ({
+      price: (3001.00 + i * 0.5).toFixed(2),
+      size: (Math.random() * 1).toFixed(3),
+      total: (Math.random() * 3000).toFixed(2),
+    })));
+    setBids(Array.from({ length: 20 }, (_, i) => ({
+      price: (2999.50 - i * 0.5).toFixed(2),
+      size: (Math.random() * 1).toFixed(3),
+      total: (Math.random() * 3000).toFixed(2),
+    })));
+  }, []);
 
   return (
     <div className="bg-black text-gray-400 p-2 h-full flex flex-col">

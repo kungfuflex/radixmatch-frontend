@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import RadixLogo from './icons/RadixLogo';
 import {
   IconDash,
@@ -12,21 +14,16 @@ import {
 } from './icons';
 import Modal from './Modal';
 
-interface LeftSidebarProps {
-  selected: string;
-  setSelected: (selected: string) => void;
-}
-
-const LeftSidebar: React.FC<LeftSidebarProps> = ({ selected, setSelected }) => {
+const LeftSidebar = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const pathname = usePathname();
 
   const navItems = [
-    { name: 'Explore', icon: <IconExplore /> },
-    { name: 'Trade', icon: <IconTrade /> },
-    { name: 'Dash', icon: <IconDash /> },
-    { name: 'Swap', icon: <IconSwap /> },
-    { name: 'Earn', icon: <IconEarn /> },
-    { name: 'Portfolio', icon: <IconPortfolio /> },
+    { name: 'Explore', href: '/explore', icon: <IconExplore /> },
+    { name: 'Trade', href: '/trade', icon: <IconTrade /> },
+    { name: 'Swap', href: '/swap', icon: <IconSwap /> },
+    { name: 'Earn', href: '/earn', icon: <IconEarn /> },
+    { name: 'Portfolio', href: '/portfolio', icon: <IconPortfolio /> },
   ];
 
   const bottomNavItems = [
@@ -42,16 +39,16 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ selected, setSelected }) => {
         </div>
         <nav className="flex flex-col gap-6">
           {navItems.map((item) => (
-            <button
+            <Link
               key={item.name}
-              title={item.name}
+              href={item.href}
               className={`flex flex-col items-center gap-1 text-xs ${
-                selected === item.name ? 'text-orange-500' : ''
+                pathname === item.href ? 'text-orange-500' : ''
               }`}
-              onClick={() => setSelected(item.name)}
             >
               {item.icon}
-            </button>
+              <span>{item.name}</span>
+            </Link>
           ))}
         </nav>
         <div className="mt-auto flex flex-col gap-6">
