@@ -32,8 +32,13 @@ export default function ClientLayout({
       <LeftSidebar />
       <div className="flex flex-col flex-1 relative overflow-hidden">
         <TopNavbar />
-        <main className="flex-1 overflow-y-auto">
-          {loading ? <LoadingSpinner /> : children}
+        <main className="flex-1 overflow-y-auto relative">
+          {loading && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
+              <LoadingSpinner />
+            </div>
+          )}
+          {children}
         </main>
         <Footer />
       </div>
