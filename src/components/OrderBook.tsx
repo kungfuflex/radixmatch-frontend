@@ -48,32 +48,31 @@ const OrderBook = () => {
             <span>Size</span>
             <span>Total</span>
           </div>
-          <div className="flex-1 overflow-hidden">
-            <div className="h-1/2 overflow-y-auto border-b border-gray-700">
-              {/* Asks */}
-              {asks.map((ask, i) => (
-                <div key={i} className="grid grid-cols-3 text-xs py-1">
-                  <span className="text-red-500">{ask.price}</span>
-                  <span>{ask.size}</span>
-                  <span>${ask.total}</span>
-                </div>
-              ))}
-            </div>
-            <div className="grid grid-cols-3 text-xs py-2 border-b border-gray-700">
-              <span className="text-gray-400">Spread</span>
-              <span className="text-gray-400">0.50</span>
-              <span className="text-gray-400">0.02%</span>
-            </div>
-            <div className="h-1/2 overflow-y-auto">
-              {/* Bids */}
-              {bids.map((bid, i) => (
-                <div key={i} className="grid grid-cols-3 text-xs py-1">
-                  <span className="text-green-500">{bid.price}</span>
-                  <span>{bid.size}</span>
-                  <span>${bid.total}</span>
-                </div>
-              ))}
-            </div>
+          <div className="flex-1 overflow-y-auto border-b border-gray-700">
+            {/* Asks */}
+            {asks.map((ask, i) => (
+              <div key={i} className="grid grid-cols-3 text-xs py-1">
+                <span className="text-red-500">{ask.price}</span>
+                <span>{ask.size}</span>
+                <span>${ask.total}</span>
+              </div>
+            ))}
+          </div>
+          {/* Spread */}
+          <div className="grid grid-cols-3 text-xs py-2 border-b border-gray-700">
+            <span className="text-gray-400">Spread</span>
+            <span className="text-gray-400">0.50</span>
+            <span className="text-gray-400">0.02%</span>
+          </div>
+          <div className="flex-1 overflow-y-auto">
+            {/* Bids */}
+            {bids.map((bid, i) => (
+              <div key={i} className="grid grid-cols-3 text-xs py-1">
+                <span className="text-green-500">{bid.price}</span>
+                <span>{bid.size}</span>
+                <span>${bid.total}</span>
+              </div>
+            ))}
           </div>
         </div>
       )}

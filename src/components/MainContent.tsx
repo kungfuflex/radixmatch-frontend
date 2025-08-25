@@ -6,8 +6,8 @@ import { IconCopy } from './icons';
 
 const MainContent = () => {
   return (
-    <main className="flex-1 p-2 bg-black text-gray-400 grid grid-rows-[min-content_1fr] gap-2">
-      <div className="grid grid-cols-4 gap-2 border-b border-gray-700 pb-2">
+    <div className="flex-1 p-2 bg-black text-gray-400 flex flex-col h-full">
+      <div className="grid grid-cols-4 gap-2 border-b border-gray-700 pb-2 mb-2">
         <div>
           <p className="text-xs text-gray-500">Price (frUSD)</p>
           <p className="text-sm text-gray-300">$3,000.00 <span className="text-green-500">(+5.2%)</span></p>
@@ -18,7 +18,7 @@ const MainContent = () => {
         </div>
         <div>
           <p className="text-xs text-gray-500">Market Cap</p>
-          <p className="text-sm text-gray-300">$1,234,567,890.12</p>
+          <p className="text-sm text.gray-300">$1,234,567,890.12</p>
         </div>
         <div>
           <p className="text-xs text-gray-500">Contract</p>
@@ -30,16 +30,18 @@ const MainContent = () => {
           </div>
         </div>
       </div>
-      <div className="grid lg:grid-cols-5 gap-2 min-h-0">
-        <div className="lg:col-span-3">
+      <div className="grid lg:grid-cols-5 gap-2 flex-1 min-h-0">
+        <div className="lg:col-span-3 bg-gray-800 rounded-lg flex flex-col min-h-0">
           <Chart />
         </div>
-        <div className="lg:col-span-2 grid md:grid-cols-2 gap-2">
+        <div className="lg:col-span-1 bg-gray-800 rounded-lg flex flex-col min-h-0">
           <OrderBook />
+        </div>
+        <div className="lg:col-span-1 bg-gray-800 rounded-lg flex flex-col min-h-0">
           <Trade />
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 

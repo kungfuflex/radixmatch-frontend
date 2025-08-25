@@ -30,9 +30,9 @@ export default function ClientLayout({
   return (
     <div className="flex h-screen bg-black text-white">
       <LeftSidebar />
-      <div className="flex flex-col flex-1 relative">
+      <div className="flex flex-col flex-1 relative overflow-hidden">
         <TopNavbar />
-        <main className="flex-1">
+        <main className="flex-1 overflow-y-auto">
           {loading ? <LoadingSpinner /> : children}
         </main>
         <Footer />

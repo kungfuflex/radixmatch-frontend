@@ -15,7 +15,7 @@ interface ClobCardProps {
 
 const ClobCard: React.FC<ClobCardProps> = ({ market }) => {
   return (
-    <Link href={market.href}>
+    <Link href={market.href} legacyBehavior>
       <a className="group relative flex flex-col justify-between h-48 p-4 rounded-lg border border-gray-800 bg-black hover:bg-gray-900 transition-all duration-300">
         <div className={`absolute inset-0 ${market.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
         <div className="relative z-10 flex justify-between items-start">
